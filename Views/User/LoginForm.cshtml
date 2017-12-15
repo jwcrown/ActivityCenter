@@ -1,0 +1,15 @@
+﻿<div style="display:inline-block; vertical-align:top; margin-left: 150px;"> 
+    <h2>Login</h2>
+    @model BeltExam1.Models.LoginView
+    <form action="/login" method="post">
+        <label asp-for="LogEmail"></label><br>
+        <input asp-for="LogEmail"/>
+        <span asp-validation-for="LogEmail"></span><br>
+        <label asp-for="LogPassword"></label><br>
+        <input asp-for="LogPassword"/>
+        <span asp-validation-for="LogPassword"></span><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <br>
+    @ViewBag.success
+</div>

@@ -1,0 +1,68 @@
+@model BeltExam1.Models.Dashboard
+@using BeltExam1.Models;
+@using System.ComponentModel.DataAnnotations;
+@using System;
+
+<h2 style="display:inline-block; margin:20px 0px 50px 0px;">Welcome @Model.User.FirstName!</h2>
+<table class="table table-stripped">
+        <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>Number of Participants</th>
+            <th>Actions</th>
+        </tr>
+        @foreach(Activity n in Model.Activities)
+        {
+
+            string thisdate = Convert.ToDateTime(n.Date).ToString("yyyy-MM-dd");
+            string mydate = Convert.ToDateTime(n.Date).ToString("MM/dd");
+            DateTime validate = DateTime.ParseExact(thisdate, "yyyy-MM-dd",null);
+            @if(validate >= DateTime.Now.Date)
+            {
+                string thistime = Convert.ToDateTime(n.Time).ToString("HH:mm:ss tt");
+                DateTime valitime = DateTime.ParseExact(thistime, "HH:mm:ss tt",null);
+                if(validate == DateTime.Now.Date)
+                {
+                    if(valitime < DateTime.Now)
+                    {
+                    }
+                    else
+                    {
+                        <tr>
+                            <td><a href="activity/@n.ActivityId">@n.Title</a></td>
+                            <td>@mydate at @thistime</td>
+                            <td>@n.Duration Hours</td>
+                            <td>@n.Creator.FirstName</td>
+                            <td>@n.Players.Count()</td>
+                            @if(n.UserId == Model.User.UserId)
+                            {<td><a href="delete/@n.ActivityId">Delete</a></td>}
+                            else if(n.Players.Where(g => g.UserId == Model.User.UserId).SingleOrDefault() == null)
+                            {<td><a href="join/@n.ActivityId">Join</a></td>}
+                            else
+                            {<td><a href="leave/@n.ActivityId">Leave</a></td>}
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td><a href="activity/@n.ActivityId">@n.Title</a></td>
+                        <td>@mydate at @thistime</td>
+                        <td>@n.Duration</td>
+                        <td>@n.Creator.FirstName</td>
+                        <td>@n.Players.Count()</td>
+
+                        @if(n.UserId == Model.User.UserId)
+                        {<td><a href="delete/@n.ActivityId">Delete</a></td>}
+                        else if(n.Players.Where(g => g.UserId == Model.User.UserId).SingleOrDefault() == null)
+                        {<td><a href="join/@n.ActivityId">Join</a></td>}
+                        else
+                        {<td><a href="leave/@n.ActivityId">Leave</a></td>}
+                    </tr>
+                }
+            }
+        }
+</table>
+<a href="/CreateActivity">Add New Activity!</a>

@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Welcome to the Dojo Activity Center</h1> 
+<div style="display:inline-block;">
+<h2>Registration</h2>
+@model BeltExam1.Models.UserView
+<form action="/" method="POST">
+    <label asp-for="FirstName"></label><br>
+    <input asp-for="FirstName"/>
+    <span asp-validation-for="FirstName"></span><br>
+    
+    <label asp-for="LastName"></label><br>
+    <input asp-for="LastName"/>
+    <span asp-validation-for="LastName"></span><br>
+    
+    <label asp-for="Email"></label><br>
+    <input asp-for="Email"/>
+    <span asp-validation-for="Email"></span><br>
+    
+    <label asp-for="Password"></label><br>
+    <input asp-for="Password"/>
+    <span asp-validation-for="Password"></span><br>
+    
+    <label asp-for="CPassword"></label><br>
+    <input asp-for="CPassword"/>
+    <span asp-validation-for="CPassword"></span><br><br>
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+
+@Html.Partial("LoginForm")
