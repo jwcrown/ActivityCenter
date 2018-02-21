@@ -79,6 +79,7 @@ namespace BeltExam1.Controllers
                 NewActivity.Time = model.Time;
                 NewActivity.Date = model.Date;
                 NewActivity.Duration = model.Duration;
+                NewActivity.Address = model.Address;
                 NewActivity.Description = model.Description;
                 NewActivity.UserId = ActiveUser.UserId;
                 _context.Activities.Add(NewActivity);

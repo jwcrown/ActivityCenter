@@ -56,6 +56,11 @@ namespace BeltExam1.Models
         public string Date { get; set; }
 
         [Required]
+        [MinLength(10)]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
         [Display(Name = "Duration (hours)")]
         public decimal Duration { get; set; }
 

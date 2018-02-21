@@ -11,6 +11,7 @@ namespace BeltExam1.Models
         public string Title { get; set; }
         public string Time { get; set; }
         public string Date { get; set; }
+        public string Address { get; set; }
         public decimal Duration { get; set; }
         public string Description { get; set; }
         public List<Signup> Players { get; set; }

@@ -2,19 +2,28 @@
 @using BeltExam1.Models
 <h1>@Model.Activity.Title</h1>
 
+<div class="content" style="display:inline-block; vertical-align:top; margin-right: 20%">
 @if(Model.User.UserId == Model.Activity.Creator.UserId)
-{<td><a href="/delete/@Model.Activity.ActivityId">Delete</a></td>}
-else if(Model.Activity.Players.Where(g => g.UserId == Model.User.UserId).SingleOrDefault() == null)
-{<td><a href="/join/@Model.Activity.ActivityId">Join</a></td>}
-else
-{<td><a href="/leave/@Model.Activity.ActivityId">Leave</a></td>}
+    {<td><a href="/delete/@Model.Activity.ActivityId">Delete</a></td>}
+    else if(Model.Activity.Players.Where(g => g.UserId == Model.User.UserId).SingleOrDefault() == null)
+    {<td><a href="/join/@Model.Activity.ActivityId">Join</a></td>}
+    else
+    {<td><a href="/leave/@Model.Activity.ActivityId">Leave</a></td>}
 
-<h3>Event Corrdinator: @Model.Activity.Creator.FirstName</h3>
-<p>@Model.Activity.Description</p>
-<h3>Participants</h3>
-<ul>
-@foreach(Signup p in @Model.Activity.Players)
-{
-    <li>@p.Players.FirstName @p.Players.LastName</li>
-}
-</ul>
+    <h3>Event Corrdinator: @Model.Activity.Creator.FirstName</h3>
+    <p>@Model.Activity.Description</p>
+    <h3>Participants</h3>
+    <ul>
+    @foreach(Signup p in @Model.Activity.Players)
+    {
+        <li>@p.Players.FirstName @p.Players.LastName</li>
+    }
+    </ul>
+</div>
+
+<div class="map" style="display:inline-block">
+    <iframe width="600" height="450" frameborder="2" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAWlfbrhFaZTt3SJWEu1umU18S6ibOWNTI
+    &q=@Model.Activity.Address" allowfullscreen>
+    </iframe>
+</div>
+
